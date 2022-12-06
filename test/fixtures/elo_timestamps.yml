@@ -1,0 +1,9 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  elo: 1
+  summoner: one
+
+two:
+  elo: 1
+  summoner: two

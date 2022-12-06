@@ -1,0 +1,282 @@
+  [1m[35m (204.8ms)[0m  [1m[34mSELECT pg_try_advisory_lock(2224024848832731840)[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (202.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateSummoners (20221206032117)
+  [1m[36mTRANSACTION (192.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (201.9ms)[0m  [1m[35mCREATE TABLE "summoners" ("id" bigserial primary key, "name" character varying, "summoner_name" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[36mActiveRecord::SchemaMigration Create (122.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20221206032117"]]
+  [1m[36mTRANSACTION (216.3ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateEloTimestamps (20221206032336)
+  [1m[36mTRANSACTION (202.5ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (222.2ms)[0m  [1m[35mCREATE TABLE "elo_timestamps" ("id" bigserial primary key, "elo" integer, "summoner_id" bigint NOT NULL, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL, CONSTRAINT "fk_rails_d20f4ec9ea"
+FOREIGN KEY ("summoner_id")
+  REFERENCES "summoners" ("id")
+)[0m
+  [1m[35m (203.3ms)[0m  [1m[35mCREATE INDEX "index_elo_timestamps_on_summoner_id" ON "elo_timestamps" ("summoner_id")[0m
+  [1m[36mActiveRecord::SchemaMigration Create (203.8ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20221206032336"]]
+  [1m[36mTRANSACTION (203.7ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateGames (20221206032621)
+  [1m[36mTRANSACTION (189.7ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (136.0ms)[0m  [1m[35mCREATE TABLE "games" ("id" bigserial primary key, "champ" character varying, "kills" integer, "deaths" integer, "assist" integer, "gold" integer, "damage" integer, "score" float, "summoner_id" bigint NOT NULL, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL, CONSTRAINT "fk_rails_9b6a45fe79"
+FOREIGN KEY ("summoner_id")
+  REFERENCES "summoners" ("id")
+)[0m
+  [1m[35m (126.8ms)[0m  [1m[35mCREATE INDEX "index_games_on_summoner_id" ON "games" ("summoner_id")[0m
+  [1m[36mActiveRecord::SchemaMigration Create (152.5ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20221206032621"]]
+  [1m[36mTRANSACTION (203.9ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (204.9ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (129.9ms)[0m  [1m[34mSELECT pg_advisory_unlock(2224024848832731840)[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (204.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (204.4ms)[0m  [1m[34mSELECT pg_try_advisory_lock(2224024848832731840)[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (120.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (159.2ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (134.7ms)[0m  [1m[34mSELECT pg_advisory_unlock(2224024848832731840)[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (183.8ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (202.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (128.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (205.8ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (204.7ms)[0m  [1m[34mSELECT pg_try_advisory_lock(2224024848832731840)[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (121.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateGames (20221206032621)
+  [1m[36mTRANSACTION (170.5ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (126.3ms)[0m  [1m[35mDROP TABLE "games"[0m
+  [1m[36mActiveRecord::SchemaMigration Delete All (175.8ms)[0m  [1m[31mDELETE FROM "schema_migrations" WHERE "schema_migrations"."version" = $1[0m  [["version", "20221206032621"]]
+  [1m[36mTRANSACTION (201.7ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (131.9ms)[0m  [1m[34mSELECT pg_advisory_unlock(2224024848832731840)[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (204.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (159.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (117.8ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (203.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (186.1ms)[0m  [1m[34mSELECT pg_try_advisory_lock(2224024848832731840)[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (131.8ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateEloTimestamps (20221206032336)
+  [1m[36mTRANSACTION (168.7ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (201.4ms)[0m  [1m[35mDROP TABLE "elo_timestamps"[0m
+  [1m[36mActiveRecord::SchemaMigration Delete All (201.7ms)[0m  [1m[31mDELETE FROM "schema_migrations" WHERE "schema_migrations"."version" = $1[0m  [["version", "20221206032336"]]
+  [1m[36mTRANSACTION (123.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (127.4ms)[0m  [1m[34mSELECT pg_advisory_unlock(2224024848832731840)[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (126.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (186.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (136.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (137.9ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (205.0ms)[0m  [1m[34mSELECT pg_try_advisory_lock(2224024848832731840)[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (132.9ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateSummoners (20221206032117)
+  [1m[36mTRANSACTION (136.6ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (232.0ms)[0m  [1m[35mDROP TABLE "summoners"[0m
+  [1m[36mActiveRecord::SchemaMigration Delete All (200.2ms)[0m  [1m[31mDELETE FROM "schema_migrations" WHERE "schema_migrations"."version" = $1[0m  [["version", "20221206032117"]]
+  [1m[36mTRANSACTION (202.8ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (121.1ms)[0m  [1m[34mSELECT pg_advisory_unlock(2224024848832731840)[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (139.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (203.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (200.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (157.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (205.9ms)[0m  [1m[34mSELECT pg_try_advisory_lock(2224024848832731840)[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (142.8ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateSummoners (20221206032117)
+  [1m[36mTRANSACTION (208.9ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (203.0ms)[0m  [1m[35mCREATE TABLE "summoners" ("id" bigserial primary key, "name" character varying, "summoner_name" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[36mActiveRecord::SchemaMigration Create (196.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20221206032117"]]
+  [1m[36mTRANSACTION (204.8ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateEloTimestamps (20221206032336)
+  [1m[36mTRANSACTION (198.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (202.3ms)[0m  [1m[35mCREATE TABLE "elo_timestamps" ("id" bigserial primary key, "elo" integer, "summoner_id" bigint NOT NULL, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL, CONSTRAINT "fk_rails_d20f4ec9ea"
+FOREIGN KEY ("summoner_id")
+  REFERENCES "summoners" ("id")
+)[0m
+  [1m[35m (204.6ms)[0m  [1m[35mCREATE INDEX "index_elo_timestamps_on_summoner_id" ON "elo_timestamps" ("summoner_id")[0m
+  [1m[36mActiveRecord::SchemaMigration Create (202.9ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20221206032336"]]
+  [1m[36mTRANSACTION (202.7ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateGames (20221206032621)
+  [1m[36mTRANSACTION (200.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (204.7ms)[0m  [1m[35mCREATE TABLE "games" ("id" bigserial primary key, "champ" character varying, "kills" integer, "deaths" integer, "assist" integer, "gold" integer, "damage" integer, "score" float, "summoner_id" bigint NOT NULL, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL, CONSTRAINT "fk_rails_9b6a45fe79"
+FOREIGN KEY ("summoner_id")
+  REFERENCES "summoners" ("id")
+)[0m
+  [1m[35m (204.4ms)[0m  [1m[35mCREATE INDEX "index_games_on_summoner_id" ON "games" ("summoner_id")[0m
+  [1m[36mActiveRecord::SchemaMigration Create (201.6ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20221206032621"]]
+  [1m[36mTRANSACTION (199.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (202.2ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (130.7ms)[0m  [1m[34mSELECT pg_advisory_unlock(2224024848832731840)[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (202.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (202.9ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (199.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (122.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (205.8ms)[0m  [1m[34mSELECT pg_try_advisory_lock(2224024848832731840)[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (120.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateGames (20221206032621)
+  [1m[36mTRANSACTION (177.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (202.7ms)[0m  [1m[35mDROP TABLE "games"[0m
+  [1m[36mActiveRecord::SchemaMigration Delete All (201.9ms)[0m  [1m[31mDELETE FROM "schema_migrations" WHERE "schema_migrations"."version" = $1[0m  [["version", "20221206032621"]]
+  [1m[36mTRANSACTION (199.9ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (127.8ms)[0m  [1m[34mSELECT pg_advisory_unlock(2224024848832731840)[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (152.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (202.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (201.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (203.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (123.8ms)[0m  [1m[34mSELECT pg_try_advisory_lock(2224024848832731840)[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (180.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateEloTimestamps (20221206032336)
+  [1m[36mTRANSACTION (199.6ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (202.0ms)[0m  [1m[35mDROP TABLE "elo_timestamps"[0m
+  [1m[36mActiveRecord::SchemaMigration Delete All (202.7ms)[0m  [1m[31mDELETE FROM "schema_migrations" WHERE "schema_migrations"."version" = $1[0m  [["version", "20221206032336"]]
+  [1m[36mTRANSACTION (201.6ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (115.4ms)[0m  [1m[34mSELECT pg_advisory_unlock(2224024848832731840)[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (135.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (201.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (202.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (205.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (205.7ms)[0m  [1m[34mSELECT pg_try_advisory_lock(2224024848832731840)[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (128.8ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateSummoners (20221206032117)
+  [1m[36mTRANSACTION (169.8ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (201.7ms)[0m  [1m[35mDROP TABLE "summoners"[0m
+  [1m[36mActiveRecord::SchemaMigration Delete All (201.3ms)[0m  [1m[31mDELETE FROM "schema_migrations" WHERE "schema_migrations"."version" = $1[0m  [["version", "20221206032117"]]
+  [1m[36mTRANSACTION (201.9ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (139.9ms)[0m  [1m[34mSELECT pg_advisory_unlock(2224024848832731840)[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (137.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (203.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (200.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (202.8ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (204.9ms)[0m  [1m[34mSELECT pg_try_advisory_lock(2224024848832731840)[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (177.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateSummoners (20221206032117)
+  [1m[36mTRANSACTION (199.5ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (203.1ms)[0m  [1m[35mCREATE TABLE "summoners" ("id" bigserial primary key, "name" character varying, "summoner_name" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[36mActiveRecord::SchemaMigration Create (151.9ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20221206032117"]]
+  [1m[36mTRANSACTION (122.3ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateEloTimestamps (20221206032336)
+  [1m[36mTRANSACTION (119.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (208.4ms)[0m  [1m[35mCREATE TABLE "elo_timestamps" ("id" bigserial primary key, "elo" integer, "summoner_id" bigint NOT NULL, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL, CONSTRAINT "fk_rails_d20f4ec9ea"
+FOREIGN KEY ("summoner_id")
+  REFERENCES "summoners" ("id")
+)[0m
+  [1m[35m (205.1ms)[0m  [1m[35mCREATE INDEX "index_elo_timestamps_on_summoner_id" ON "elo_timestamps" ("summoner_id")[0m
+  [1m[36mActiveRecord::SchemaMigration Create (202.3ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20221206032336"]]
+  [1m[36mTRANSACTION (203.8ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateGames (20221206032621)
+  [1m[36mTRANSACTION (256.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (146.6ms)[0m  [1m[35mCREATE TABLE "games" ("id" bigserial primary key, "champ" character varying, "kills" integer, "deaths" integer, "assist" integer, "gold" integer, "damage" integer, "score" float, "summoner_id" bigint NOT NULL, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL, CONSTRAINT "fk_rails_9b6a45fe79"
+FOREIGN KEY ("summoner_id")
+  REFERENCES "summoners" ("id")
+)[0m
+  [1m[35m (203.1ms)[0m  [1m[35mCREATE INDEX "index_games_on_summoner_id" ON "games" ("summoner_id")[0m
+  [1m[36mActiveRecord::SchemaMigration Create (123.3ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20221206032621"]]
+  [1m[36mTRANSACTION (113.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (204.5ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (136.0ms)[0m  [1m[34mSELECT pg_advisory_unlock(2224024848832731840)[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (202.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Started POST "/summoner" for ::1 at 2022-12-05 23:00:16 -0500
+  [1m[36mActiveRecord::SchemaMigration Pluck (136.8ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  
+ActionController::RoutingError (uninitialized constant SummonerController
+
+      Object.const_get(camel_cased_word)
+            ^^^^^^^^^^
+Did you mean?  SummonersController
+
+            raise MissingController.new(error.message, error.name)
+            ^^^^^):
+  
+Started POST "/summoner" for ::1 at 2022-12-05 23:00:35 -0500
+  
+ActionController::RoutingError (uninitialized constant SummonerController
+
+      Object.const_get(camel_cased_word)
+            ^^^^^^^^^^
+Did you mean?  SummonersController
+
+            raise MissingController.new(error.message, error.name)
+            ^^^^^):
+  
+Started POST "/summoner" for ::1 at 2022-12-05 23:00:41 -0500
+  
+ActionController::RoutingError (No route matches [POST] "/summoner"):
+  
+Started POST "/summoners" for ::1 at 2022-12-05 23:00:50 -0500
+Processing by SummonersController#create as */*
+  Parameters: {"name"=>"cesar antonio madera garces", "summoner_name"=>"XDarkCROWNX", "summoner"=>{"name"=>"cesar antonio madera garces", "summoner_name"=>"XDarkCROWNX"}}
+  [1m[36mTRANSACTION (128.4ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/summoners_controller.rb:4:in `create'
+  [1m[36mSummoner Exists? (130.5ms)[0m  [1m[34mSELECT 1 AS one FROM "summoners" WHERE "summoners"."summoner_name" = $1 LIMIT $2[0m  [["summoner_name", "XDarkCROWNX"], ["LIMIT", 1]]
+  ↳ app/controllers/summoners_controller.rb:4:in `create'
+  [1m[36mSummoner Create (148.1ms)[0m  [1m[32mINSERT INTO "summoners" ("name", "summoner_name", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "cesar antonio madera garces"], ["summoner_name", "XDarkCROWNX"], ["created_at", "2022-12-06 04:00:51.226707"], ["updated_at", "2022-12-06 04:00:51.226707"]]
+  ↳ app/controllers/summoners_controller.rb:4:in `create'
+  [1m[36mTRANSACTION (130.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/summoners_controller.rb:4:in `create'
+Completed 200 OK in 718ms (Views: 0.9ms | ActiveRecord: 1089.2ms | Allocations: 11410)
+
+
+Started GET "/games" for ::1 at 2022-12-05 23:03:08 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/games"):
+  
+Started POST "/games" for ::1 at 2022-12-05 23:03:13 -0500
+Processing by GamesController#create as */*
+  Parameters: {"champ"=>"Annie", "kills"=>5, "deaths"=>3, "assist"=>9, "gold"=>10000, "damage"=>100000, "score"=>9.5, "summoner_id"=>1, "game"=>{"champ"=>"Annie", "kills"=>5, "deaths"=>3, "assist"=>9, "gold"=>10000, "damage"=>100000, "score"=>9.5, "summoner_id"=>1}}
+  [1m[36mTRANSACTION (138.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/games_controller.rb:4:in `create'
+  [1m[36mSummoner Load (144.4ms)[0m  [1m[34mSELECT "summoners".* FROM "summoners" WHERE "summoners"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/games_controller.rb:4:in `create'
+  [1m[36mGame Create (149.2ms)[0m  [1m[32mINSERT INTO "games" ("champ", "kills", "deaths", "assist", "gold", "damage", "score", "summoner_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) RETURNING "id"[0m  [["champ", "Annie"], ["kills", 5], ["deaths", 3], ["assist", 9], ["gold", 10000], ["damage", 100000], ["score", 9.5], ["summoner_id", 1], ["created_at", "2022-12-06 04:03:14.553673"], ["updated_at", "2022-12-06 04:03:14.553673"]]
+  ↳ app/controllers/games_controller.rb:4:in `create'
+  [1m[36mTRANSACTION (134.5ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/games_controller.rb:4:in `create'
+Completed 200 OK in 1052ms (Views: 2.4ms | ActiveRecord: 1003.1ms | Allocations: 11059)
+
+
+Started POST "/elo_timestamps" for ::1 at 2022-12-05 23:03:56 -0500
+Processing by EloTimestampsController#create as */*
+  Parameters: {"elo"=>20, "summoner_id"=>1, "elo_timestamp"=>{"elo"=>20, "summoner_id"=>1}}
+[31mUnpermitted parameter: :summoner_id. Context: { controller: EloTimestampsController, action: create, request: #<ActionDispatch::Request:0x00007f60bfa637c8>, params: {"elo"=>20, "summoner_id"=>1, "controller"=>"elo_timestamps", "action"=>"create", "elo_timestamp"=>{"elo"=>20, "summoner_id"=>1}} }[0m
+Completed 400 Bad Request in 150ms (Views: 0.3ms | ActiveRecord: 280.3ms | Allocations: 2424)
+
+
+Started POST "/elo_timestamps" for ::1 at 2022-12-05 23:04:21 -0500
+Processing by EloTimestampsController#create as */*
+  Parameters: {"elo"=>20, "summoner_id"=>1, "elo_timestamp"=>{"elo"=>20, "summoner_id"=>1}}
+  [1m[36mTRANSACTION (152.3ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/elo_timestamps_controller.rb:4:in `create'
+  [1m[36mSummoner Load (152.9ms)[0m  [1m[34mSELECT "summoners".* FROM "summoners" WHERE "summoners"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/elo_timestamps_controller.rb:4:in `create'
+  [1m[36mEloTimestamp Create (137.6ms)[0m  [1m[32mINSERT INTO "elo_timestamps" ("elo", "summoner_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["elo", 20], ["summoner_id", 1], ["created_at", "2022-12-06 04:04:23.143126"], ["updated_at", "2022-12-06 04:04:23.143126"]]
+  ↳ app/controllers/elo_timestamps_controller.rb:4:in `create'
+  [1m[36mTRANSACTION (122.5ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/elo_timestamps_controller.rb:4:in `create'
+Completed 200 OK in 1017ms (Views: 0.5ms | ActiveRecord: 1271.6ms | Allocations: 6844)
+
+
+  [1m[35m (126.0ms)[0m  [1m[34mSELECT pg_try_advisory_lock(2224024848832731840)[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (141.8ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to AddWonToGames (20221206040727)
+  [1m[36mTRANSACTION (133.4ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (132.3ms)[0m  [1m[35mALTER TABLE "games" ADD "won" boolean[0m
+  [1m[36mActiveRecord::SchemaMigration Create (150.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20221206040727"]]
+  [1m[36mTRANSACTION (140.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (130.9ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (124.0ms)[0m  [1m[34mSELECT pg_advisory_unlock(2224024848832731840)[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (127.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (131.4ms)[0m  [1m[34mSELECT pg_try_advisory_lock(2224024848832731840)[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (130.9ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to AddGameIdToGames (20221206041251)
+  [1m[36mTRANSACTION (149.7ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (143.6ms)[0m  [1m[35mALTER TABLE "games" ADD "game_id" character varying[0m
+  [1m[36mActiveRecord::SchemaMigration Create (127.4ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20221206041251"]]
+  [1m[36mTRANSACTION (126.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (133.2ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (136.0ms)[0m  [1m[34mSELECT pg_advisory_unlock(2224024848832731840)[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (117.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Started POST "/games" for ::1 at 2022-12-05 23:14:16 -0500
+  [1m[36mActiveRecord::SchemaMigration Pluck (137.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by GamesController#create as */*
+  Parameters: {"champ"=>"Annie", "kills"=>5, "deaths"=>3, "assist"=>9, "gold"=>10000, "damage"=>100000, "score"=>9.5, "summoner_id"=>1, "game_id"=>"xdxdxdxd", "won"=>true, "game"=>{"champ"=>"Annie", "kills"=>5, "deaths"=>3, "assist"=>9, "gold"=>10000, "damage"=>100000, "score"=>9.5, "summoner_id"=>1, "won"=>true, "game_id"=>"xdxdxdxd"}}
+  [1m[36mTRANSACTION (137.3ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/games_controller.rb:4:in `create'
+  [1m[36mSummoner Load (143.4ms)[0m  [1m[34mSELECT "summoners".* FROM "summoners" WHERE "summoners"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/games_controller.rb:4:in `create'
+  [1m[36mGame Create (131.2ms)[0m  [1m[32mINSERT INTO "games" ("champ", "kills", "deaths", "assist", "gold", "damage", "score", "summoner_id", "created_at", "updated_at", "won", "game_id") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12) RETURNING "id"[0m  [["champ", "Annie"], ["kills", 5], ["deaths", 3], ["assist", 9], ["gold", 10000], ["damage", 100000], ["score", 9.5], ["summoner_id", 1], ["created_at", "2022-12-06 04:14:21.626577"], ["updated_at", "2022-12-06 04:14:21.626577"], ["won", true], ["game_id", "xdxdxdxd"]]
+  ↳ app/controllers/games_controller.rb:4:in `create'
+  [1m[36mTRANSACTION (131.2ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/games_controller.rb:4:in `create'
+Completed 200 OK in 1287ms (Views: 1.1ms | ActiveRecord: 1518.2ms | Allocations: 17896)
+
+
