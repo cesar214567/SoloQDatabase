@@ -6,5 +6,5 @@ Rails.application.routes.draw do
 
   resources :games, only: [:create]
   resources :elo_timestamps, only: [:create]
-  resources :summoners, only: [:create]
+  resources :summoners, only: [:create,:index]
 end

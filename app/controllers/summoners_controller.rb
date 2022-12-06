@@ -1,4 +1,9 @@
 class SummonersController < ApplicationController
+    def index
+        @summoners = Summoner.all
+        render json: @summoners
+    end
+    
     def create
         @summoner = Summoner.new(summoner_params)
         if @summoner.save
