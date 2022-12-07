@@ -6,6 +6,7 @@ class SummonersController < ApplicationController
     
     def create
         @summoner = Summoner.new(summoner_params)
+        puts @summoner
         if @summoner.save
             render json: @summoner 
         else
@@ -18,7 +19,7 @@ class SummonersController < ApplicationController
     end
 
     def summoner_params
-        params.require(:summoner).permit(:name, :summoner_name)
+        params.require(:summoner).permit(:name, :summoner_name, :gg_id)
     end
 
 end
