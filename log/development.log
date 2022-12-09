@@ -570,3 +570,47 @@ Completed 400 Bad Request in 642ms (Views: 0.4ms | ActiveRecord: 505.5ms | Alloc
   [1m[36mGame Delete All (183.3ms)[0m  [1m[31mDELETE FROM "games"[0m
   [1m[36mEloTimestamp Load (174.7ms)[0m  [1m[34mSELECT "elo_timestamps".* FROM "elo_timestamps"[0m
   [1m[36mEloTimestamp Delete All (158.8ms)[0m  [1m[31mDELETE FROM "elo_timestamps"[0m
+  [1m[36mTRANSACTION (175.6ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mSummoner Exists? (138.0ms)[0m  [1m[34mSELECT 1 AS one FROM "summoners" WHERE "summoners"."summoner_name" = $1 LIMIT $2[0m  [["summoner_name", "6r2VjDnCiF3ETsgDbSY2E0BuHCvUyLt7wOZlG4ssYhMkKUU"], ["LIMIT", 1]]
+  [1m[36mSummoner Create (130.1ms)[0m  [1m[32mINSERT INTO "summoners" ("name", "summoner_name", "created_at", "updated_at", "gg_id", "duration_seconds", "role") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["name", "asdsadsdsds"], ["summoner_name", "6r2VjDnCiF3ETsgDbSY2E0BuHCvUyLt7wOZlG4ssYhMkKUU"], ["created_at", "2022-12-09 03:15:01.216438"], ["updated_at", "2022-12-09 03:15:01.216438"], ["gg_id", nil], ["duration_seconds", nil], ["role", nil]]
+  [1m[36mTRANSACTION (220.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mSummoner Load (206.2ms)[0m  [1m[34mSELECT "summoners".* FROM "summoners" ORDER BY "summoners"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mSummoner Load (206.0ms)[0m  [1m[34mSELECT "summoners".* FROM "summoners" WHERE "summoners"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mSummoner Load (205.3ms)[0m  [1m[34mSELECT "summoners".* FROM "summoners" ORDER BY "summoners"."id" DESC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mSummoner Load (191.8ms)[0m  [1m[34mSELECT "summoners".* FROM "summoners" ORDER BY "summoners"."id" DESC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mSummoner Destroy (165.2ms)[0m  [1m[31mDELETE FROM "summoners" WHERE "summoners"."id" = $1[0m  [["id", 19]]
+  [1m[36mSummoner Load (244.3ms)[0m  [1m[34mSELECT "summoners".* FROM "summoners" ORDER BY "summoners"."id" DESC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mActiveRecord::SchemaMigration Pluck (153.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (136.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (122.9ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (165.1ms)[0m  [1m[34mSELECT pg_try_advisory_lock(2224024848832731840)[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (127.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to AddRoleAndDurationSecondsToSummoners (20221209024017)
+  [1m[36mTRANSACTION (201.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (202.5ms)[0m  [1m[35mALTER TABLE "summoners" DROP COLUMN "role"[0m
+  [1m[35m (202.5ms)[0m  [1m[35mALTER TABLE "summoners" DROP COLUMN "duration_seconds"[0m
+  [1m[36mActiveRecord::SchemaMigration Delete All (202.0ms)[0m  [1m[31mDELETE FROM "schema_migrations" WHERE "schema_migrations"."version" = $1[0m  [["version", "20221209024017"]]
+  [1m[36mTRANSACTION (206.8ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (123.0ms)[0m  [1m[34mSELECT pg_advisory_unlock(2224024848832731840)[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (130.9ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (162.0ms)[0m  [1m[34mSELECT pg_try_advisory_lock(2224024848832731840)[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (163.9ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to AddRoleAndDurationSecondsToGames (20221209031800)
+  [1m[36mTRANSACTION (195.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (202.6ms)[0m  [1m[35mALTER TABLE "games" ADD "duration_seconds" integer[0m
+  [1m[35m (201.8ms)[0m  [1m[35mALTER TABLE "games" ADD "role" character varying[0m
+  [1m[36mActiveRecord::SchemaMigration Create (196.5ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20221209031800"]]
+  [1m[36mTRANSACTION (199.7ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (204.2ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (130.1ms)[0m  [1m[34mSELECT pg_advisory_unlock(2224024848832731840)[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (204.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mTRANSACTION (145.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mSummoner Exists? (202.9ms)[0m  [1m[34mSELECT 1 AS one FROM "summoners" WHERE "summoners"."summoner_name" = $1 LIMIT $2[0m  [["summoner_name", "test_name"], ["LIMIT", 1]]
+  [1m[36mSummoner Create (193.7ms)[0m  [1m[32mINSERT INTO "summoners" ("id", "name", "summoner_name", "created_at", "updated_at", "gg_id") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["id", 1], ["name", "test"], ["summoner_name", "test_name"], ["created_at", "2022-12-09 03:20:03.850830"], ["updated_at", "2022-12-09 03:20:03.850830"], ["gg_id", "6r2VjDnCiF3ETsgDbSY2E0BuHCvUyLt7wOZlG4ssYhMkKUU"]]
+  [1m[36mTRANSACTION (123.9ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mSummoner Load (126.4ms)[0m  [1m[34mSELECT "summoners".* FROM "summoners" ORDER BY "summoners"."id" DESC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mSummoner Load (138.8ms)[0m  [1m[34mSELECT "summoners".* FROM "summoners" WHERE "summoners"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (172.9ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mSummoner Exists? (203.2ms)[0m  [1m[34mSELECT 1 AS one FROM "summoners" WHERE "summoners"."summoner_name" = $1 LIMIT $2[0m  [["summoner_name", "test_name2"], ["LIMIT", 1]]
+  [1m[36mSummoner Create (203.7ms)[0m  [1m[32mINSERT INTO "summoners" ("id", "name", "summoner_name", "created_at", "updated_at", "gg_id") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["id", 2], ["name", "test2"], ["summoner_name", "test_name2"], ["created_at", "2022-12-09 03:22:23.336518"], ["updated_at", "2022-12-09 03:22:23.336518"], ["gg_id", "SyMX-deHKywB1mtFitqEJHYG5g3EjvxcNsvMAPbWQ7C7"]]
+  [1m[36mTRANSACTION (204.1ms)[0m  [1m[35mCOMMIT[0m
