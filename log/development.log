@@ -460,3 +460,113 @@ Completed 200 OK in 277ms (Views: 142.0ms | ActiveRecord: 134.7ms | Allocations:
   [1m[36mSummoner Delete All (244.6ms)[0m  [1m[31mDELETE FROM "summoners"[0m
   [1m[36mGame Delete All (203.2ms)[0m  [1m[31mDELETE FROM "games"[0m
   [1m[36mEloTimestamp Load (265.9ms)[0m  [1m[34mSELECT "elo_timestamps".* FROM "elo_timestamps"[0m
+  [1m[35m (205.0ms)[0m  [1m[34mSELECT pg_try_advisory_lock(2224024848832731840)[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (203.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to AddRoleAndDurationSecondsToSummoners (20221209024017)
+  [1m[36mTRANSACTION (194.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (203.8ms)[0m  [1m[35mALTER TABLE "summoners" ADD "duration_seconds" integer[0m
+  [1m[35m (202.7ms)[0m  [1m[35mALTER TABLE "summoners" ADD "role" character varying[0m
+  [1m[36mActiveRecord::SchemaMigration Create (128.7ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20221209024017"]]
+  [1m[36mTRANSACTION (131.6ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (199.2ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (145.3ms)[0m  [1m[34mSELECT pg_advisory_unlock(2224024848832731840)[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (129.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Started GET "/games" for ::1 at 2022-12-08 21:44:31 -0500
+  [1m[36mActiveRecord::SchemaMigration Pluck (185.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  
+ActionController::RoutingError (No route matches [GET] "/games"):
+  
+Started POST "/games" for ::1 at 2022-12-08 21:44:41 -0500
+Processing by GamesController#create as */*
+  Parameters: {"champ"=>"Annie", "kills"=>5, "deaths"=>3, "assist"=>9, "gold"=>10000, "damage"=>100000, "score"=>9.5, "summoner_id"=>2, "game_id"=>"asdasdsadasd", "won"=>true, "game"=>{"champ"=>"Annie", "kills"=>5, "deaths"=>3, "assist"=>9, "gold"=>10000, "damage"=>100000, "score"=>9.5, "summoner_id"=>2, "won"=>true, "game_id"=>"asdasdsadasd"}}
+  [1m[36mTRANSACTION (157.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/games_controller.rb:4:in `create'
+  [1m[36mSummoner Load (204.6ms)[0m  [1m[34mSELECT "summoners".* FROM "summoners" WHERE "summoners"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/games_controller.rb:4:in `create'
+  [1m[36mGame Exists? (130.2ms)[0m  [1m[34mSELECT 1 AS one FROM "games" WHERE "games"."summoner_id" = $1 AND "games"."game_id" = $2 LIMIT $3[0m  [["summoner_id", 2], ["game_id", "asdasdsadasd"], ["LIMIT", 1]]
+  ↳ app/controllers/games_controller.rb:4:in `create'
+  [1m[36mTRANSACTION (167.6ms)[0m  [1m[31mROLLBACK[0m
+  ↳ app/controllers/games_controller.rb:4:in `create'
+Completed 400 Bad Request in 1639ms (Views: 0.9ms | ActiveRecord: 1964.5ms | Allocations: 16670)
+
+
+Started POST "/games" for ::1 at 2022-12-08 21:45:09 -0500
+Processing by GamesController#create as */*
+  Parameters: {"champ"=>"Annie", "kills"=>5, "deaths"=>3, "assist"=>9, "gold"=>10000, "damage"=>100000, "score"=>9.5, "summoner_id"=>6, "game_id"=>"asdasdsadasd", "won"=>true, "game"=>{"champ"=>"Annie", "kills"=>5, "deaths"=>3, "assist"=>9, "gold"=>10000, "damage"=>100000, "score"=>9.5, "summoner_id"=>6, "won"=>true, "game_id"=>"asdasdsadasd"}}
+  [1m[36mTRANSACTION (225.0ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/games_controller.rb:4:in `create'
+  [1m[36mSummoner Load (201.8ms)[0m  [1m[34mSELECT "summoners".* FROM "summoners" WHERE "summoners"."id" = $1 LIMIT $2[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/controllers/games_controller.rb:4:in `create'
+  [1m[36mGame Exists? (188.9ms)[0m  [1m[34mSELECT 1 AS one FROM "games" WHERE "games"."summoner_id" = $1 AND "games"."game_id" = $2 LIMIT $3[0m  [["summoner_id", 6], ["game_id", "asdasdsadasd"], ["LIMIT", 1]]
+  ↳ app/controllers/games_controller.rb:4:in `create'
+  [1m[36mGame Create (199.9ms)[0m  [1m[32mINSERT INTO "games" ("champ", "kills", "deaths", "assist", "gold", "damage", "score", "summoner_id", "created_at", "updated_at", "won", "game_id") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12) RETURNING "id"[0m  [["champ", "Annie"], ["kills", 5], ["deaths", 3], ["assist", 9], ["gold", 10000], ["damage", 100000], ["score", 9.5], ["summoner_id", 6], ["created_at", "2022-12-09 02:45:10.489199"], ["updated_at", "2022-12-09 02:45:10.489199"], ["won", true], ["game_id", "asdasdsadasd"]]
+  ↳ app/controllers/games_controller.rb:4:in `create'
+  [1m[36mTRANSACTION (200.0ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/games_controller.rb:4:in `create'
+Completed 200 OK in 1179ms (Views: 0.9ms | ActiveRecord: 1015.5ms | Allocations: 7712)
+
+
+Started POST "/games" for ::1 at 2022-12-08 21:45:13 -0500
+Processing by GamesController#create as */*
+  Parameters: {"champ"=>"Annie", "kills"=>5, "deaths"=>3, "assist"=>9, "gold"=>10000, "damage"=>100000, "score"=>9.5, "summoner_id"=>6, "game_id"=>"asdasdsadasd", "won"=>true, "game"=>{"champ"=>"Annie", "kills"=>5, "deaths"=>3, "assist"=>9, "gold"=>10000, "damage"=>100000, "score"=>9.5, "summoner_id"=>6, "won"=>true, "game_id"=>"asdasdsadasd"}}
+  [1m[36mTRANSACTION (169.7ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/games_controller.rb:4:in `create'
+  [1m[36mSummoner Load (203.7ms)[0m  [1m[34mSELECT "summoners".* FROM "summoners" WHERE "summoners"."id" = $1 LIMIT $2[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/controllers/games_controller.rb:4:in `create'
+  [1m[36mGame Exists? (199.7ms)[0m  [1m[34mSELECT 1 AS one FROM "games" WHERE "games"."summoner_id" = $1 AND "games"."game_id" = $2 LIMIT $3[0m  [["summoner_id", 6], ["game_id", "asdasdsadasd"], ["LIMIT", 1]]
+  ↳ app/controllers/games_controller.rb:4:in `create'
+  [1m[36mTRANSACTION (202.1ms)[0m  [1m[31mROLLBACK[0m
+  ↳ app/controllers/games_controller.rb:4:in `create'
+Completed 400 Bad Request in 910ms (Views: 0.5ms | ActiveRecord: 775.1ms | Allocations: 3097)
+
+
+Started POST "/games" for ::1 at 2022-12-08 21:45:21 -0500
+Processing by GamesController#create as */*
+  Parameters: {"champ"=>"Annie", "kills"=>5, "deaths"=>3, "assist"=>9, "gold"=>10000, "damage"=>100000, "score"=>9.5, "summoner_id"=>6, "game_id"=>"asdasdsadasds", "won"=>true, "game"=>{"champ"=>"Annie", "kills"=>5, "deaths"=>3, "assist"=>9, "gold"=>10000, "damage"=>100000, "score"=>9.5, "summoner_id"=>6, "won"=>true, "game_id"=>"asdasdsadasds"}}
+  [1m[36mTRANSACTION (222.6ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/games_controller.rb:4:in `create'
+  [1m[36mSummoner Load (201.6ms)[0m  [1m[34mSELECT "summoners".* FROM "summoners" WHERE "summoners"."id" = $1 LIMIT $2[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/controllers/games_controller.rb:4:in `create'
+  [1m[36mGame Exists? (135.9ms)[0m  [1m[34mSELECT 1 AS one FROM "games" WHERE "games"."summoner_id" = $1 AND "games"."game_id" = $2 LIMIT $3[0m  [["summoner_id", 6], ["game_id", "asdasdsadasds"], ["LIMIT", 1]]
+  ↳ app/controllers/games_controller.rb:4:in `create'
+  [1m[36mGame Create (122.5ms)[0m  [1m[32mINSERT INTO "games" ("champ", "kills", "deaths", "assist", "gold", "damage", "score", "summoner_id", "created_at", "updated_at", "won", "game_id") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12) RETURNING "id"[0m  [["champ", "Annie"], ["kills", 5], ["deaths", 3], ["assist", 9], ["gold", 10000], ["damage", 100000], ["score", 9.5], ["summoner_id", 6], ["created_at", "2022-12-09 02:45:21.989522"], ["updated_at", "2022-12-09 02:45:21.989522"], ["won", true], ["game_id", "asdasdsadasds"]]
+  ↳ app/controllers/games_controller.rb:4:in `create'
+  [1m[36mTRANSACTION (119.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/games_controller.rb:4:in `create'
+Completed 200 OK in 929ms (Views: 0.4ms | ActiveRecord: 801.8ms | Allocations: 3858)
+
+
+Started POST "/games" for ::1 at 2022-12-08 21:45:26 -0500
+Processing by GamesController#create as */*
+  Parameters: {"champ"=>"Annie", "kills"=>5, "deaths"=>3, "assist"=>9, "gold"=>10000, "damage"=>100000, "score"=>9.5, "summoner_id"=>7, "game_id"=>"asdasdsadasd", "won"=>true, "game"=>{"champ"=>"Annie", "kills"=>5, "deaths"=>3, "assist"=>9, "gold"=>10000, "damage"=>100000, "score"=>9.5, "summoner_id"=>7, "won"=>true, "game_id"=>"asdasdsadasd"}}
+  [1m[36mTRANSACTION (202.3ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/games_controller.rb:4:in `create'
+  [1m[36mSummoner Load (206.2ms)[0m  [1m[34mSELECT "summoners".* FROM "summoners" WHERE "summoners"."id" = $1 LIMIT $2[0m  [["id", 7], ["LIMIT", 1]]
+  ↳ app/controllers/games_controller.rb:4:in `create'
+  [1m[36mGame Exists? (238.4ms)[0m  [1m[34mSELECT 1 AS one FROM "games" WHERE "games"."summoner_id" = $1 AND "games"."game_id" = $2 LIMIT $3[0m  [["summoner_id", 7], ["game_id", "asdasdsadasd"], ["LIMIT", 1]]
+  ↳ app/controllers/games_controller.rb:4:in `create'
+  [1m[36mGame Create (161.4ms)[0m  [1m[32mINSERT INTO "games" ("champ", "kills", "deaths", "assist", "gold", "damage", "score", "summoner_id", "created_at", "updated_at", "won", "game_id") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12) RETURNING "id"[0m  [["champ", "Annie"], ["kills", 5], ["deaths", 3], ["assist", 9], ["gold", 10000], ["damage", 100000], ["score", 9.5], ["summoner_id", 7], ["created_at", "2022-12-09 02:45:27.729527"], ["updated_at", "2022-12-09 02:45:27.729527"], ["won", true], ["game_id", "asdasdsadasd"]]
+  ↳ app/controllers/games_controller.rb:4:in `create'
+  [1m[36mTRANSACTION (125.2ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/games_controller.rb:4:in `create'
+Completed 200 OK in 1074ms (Views: 0.5ms | ActiveRecord: 933.5ms | Allocations: 3874)
+
+
+Started POST "/games" for ::1 at 2022-12-08 21:45:29 -0500
+Processing by GamesController#create as */*
+  Parameters: {"champ"=>"Annie", "kills"=>5, "deaths"=>3, "assist"=>9, "gold"=>10000, "damage"=>100000, "score"=>9.5, "summoner_id"=>7, "game_id"=>"asdasdsadasd", "won"=>true, "game"=>{"champ"=>"Annie", "kills"=>5, "deaths"=>3, "assist"=>9, "gold"=>10000, "damage"=>100000, "score"=>9.5, "summoner_id"=>7, "won"=>true, "game_id"=>"asdasdsadasd"}}
+  [1m[36mTRANSACTION (127.4ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/games_controller.rb:4:in `create'
+  [1m[36mSummoner Load (135.7ms)[0m  [1m[34mSELECT "summoners".* FROM "summoners" WHERE "summoners"."id" = $1 LIMIT $2[0m  [["id", 7], ["LIMIT", 1]]
+  ↳ app/controllers/games_controller.rb:4:in `create'
+  [1m[36mGame Exists? (125.6ms)[0m  [1m[34mSELECT 1 AS one FROM "games" WHERE "games"."summoner_id" = $1 AND "games"."game_id" = $2 LIMIT $3[0m  [["summoner_id", 7], ["game_id", "asdasdsadasd"], ["LIMIT", 1]]
+  ↳ app/controllers/games_controller.rb:4:in `create'
+  [1m[36mTRANSACTION (116.8ms)[0m  [1m[31mROLLBACK[0m
+  ↳ app/controllers/games_controller.rb:4:in `create'
+Completed 400 Bad Request in 642ms (Views: 0.4ms | ActiveRecord: 505.5ms | Allocations: 3107)
+
+
+  [1m[36mGame Load (174.5ms)[0m  [1m[34mSELECT "games".* FROM "games"[0m
+  [1m[36mGame Delete All (183.3ms)[0m  [1m[31mDELETE FROM "games"[0m
+  [1m[36mEloTimestamp Load (174.7ms)[0m  [1m[34mSELECT "elo_timestamps".* FROM "elo_timestamps"[0m
+  [1m[36mEloTimestamp Delete All (158.8ms)[0m  [1m[31mDELETE FROM "elo_timestamps"[0m

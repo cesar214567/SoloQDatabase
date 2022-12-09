@@ -13,6 +13,6 @@ class GamesController < ApplicationController
     end
 
     def game_params
-        params.require(:game).permit(:champ, :kills, :deaths, :assist, :gold, :damage, :score, :summoner_id,:won,:game_id)
+        params.require(:game).permit(:champ, :kills, :deaths, :assist, :gold, :damage, :score, :summoner_id,:won,:game_id,:role,:duration_seconds)
     end
 end
