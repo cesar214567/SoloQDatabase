@@ -17,11 +17,11 @@
 default: &default
   adapter: postgresql
   encoding: unicode
-  host: ec2-44-195-100-240.compute-1.amazonaws.com
-  database: d5umgl1jlnh4kc
-  username: ymljgccdumrymu
+  host: <%= ENV['DB_HOST'] %> 
+  database: <%= ENV['DB_DATABASE'] %> 
+  username: <%= ENV['DB_USERNAME'] %> 
   port: 5432
-  password: 69854dbcf6ccabc09ea32c717490b54951475201bb144c7f02ba4ca687b8b7e0
+  password: <%= ENV['DB_PASSWORD'] %> 
   
   # For details on connection pooling, see Rails configuration guide
   # https://guides.rubyonrails.org/configuring.html#database-pooling
